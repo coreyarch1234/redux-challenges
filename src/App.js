@@ -17,14 +17,8 @@ class App extends Component {
         super(props);
         this.state = {
             componentsArr: [
-                <Counter key={1} incrementValue={1}/>,
-                <Counter key={2} incrementValue={5}/>,
-                <Counter key={3} incrementValue={1}/>,
-                <Counter key={4} incrementValue={1}/>,
-                <Counter key={5} incrementValue={2}/>,
-                <Counter key={6} incrementValue={3}/>,
-                <Counter key={7} incrementValue={4}/>,
-                <Counter key={8} incrementValue={5}/>
+                <Counter key={0} keyValue={0} incrementValue={1}/>,
+                <Counter key={1} keyValue={1} incrementValue={5}/>
             ]
         }
     }
@@ -32,7 +26,8 @@ class App extends Component {
         return (
         <Provider store={store}>
           <div className="App">
-              <Counter keyValue={0} incrementValue={5}/>
+          <Counter key={0} keyValue={0} incrementValue={1}/>
+          <Counter key={1} keyValue={1} incrementValue={5}/>
           </div>
         </Provider>
       );

@@ -29,7 +29,7 @@ export const incrementBy = ( n = 1, key ) => {
         type: INCREMENT_BY,
         payload: {
             amount: n,
-            key: key
+            keyValue: key
         }
     }
 }

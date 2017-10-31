@@ -4,25 +4,14 @@ import { connect } from 'react-redux';
 import { incrementCounter, decrementCounter, resetCounter, incrementBy } from '../actions';
 
 class Counter extends Component {
-    // toDisplay(){
-    //     console.log(this.props.counterKey.length);
-    //     console.log('we hit default');
-    //     if (this.props.counterKey[0].key === null){
-    //         console.log('we hit default');
-    //         return (<h1>0</h1>)
-    //     }else if (this.props.counterKey.length > 1){
-    //         console.log('we hit new state');
-    //         var toDisplay = this.props.counterKey[this.props.key + 1].count //this.props.key + 1 because first is default
-    //         return (<h1>toDisplay</h1>)
-    //     }
-    // }
-    // {this.props.counterKey.length === 1 ? <h1>{this.props.counterKey[0].count}</h1> : <h1>{this.props.counterKey[1].count}</h1>}
-
     render() {
-        console.log(this.props.counterKey.length)
+        console.log(this.props.counterKey.length);
+        console.log('the key is: ' + this.props.keyValue);
+        var keyNumber = this.props.keyValue + 1 > this.props.counterKey.length - 1 ? 0 : this.props.keyValue + 1;
+        console.log('key number is: ' + keyNumber)
         return (
           <div>
-            {this.props.counterKey.length === 1 ? <h1>{this.props.counterKey[0].count}</h1> : <h1>{this.props.counterKey[1].count}</h1>}
+            {this.props.counterKey.length === 1 ? <h1>{this.props.counterKey[0].count}</h1> : <h1>{this.props.counterKey[keyNumber].count}</h1>}
             <button onClick={() => {
               this.props.incrementCounter(this.props.keyValue);
             }}>Up</button>
