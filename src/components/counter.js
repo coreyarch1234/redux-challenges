@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { incrementCounter, decrementCounter, resetCounter, incrementBy } from '../actions';
+import { incrementCounter, decrementCounter, resetCounter, incrementBy, newCounter } from '../actions';
 
 class Counter extends Component {
     render() {
@@ -23,21 +23,19 @@ class Counter extends Component {
             <button onClick={() => {
               this.props.resetCounter(this.props.keyValue);
             }}>Reset</button>
-
-            <button onClick={() => {
-              this.props.incrementBy(this.props.incrementValue, this.props.keyValue);
-          }}>Skip 5</button>
           </div>
         );
     }
 }
 
+// <button onClick={() => {
+//   this.props.incrementBy(this.props.incrementValue, this.props.keyValue);
+// }}>Skip 5</button>
 // export default Counter;
 
 const mapStateToProps = (state) => {
   return {
       counterKey: state.counterKey,
-      counter: state.counter
    }
 }
 // counter: state.counter,
@@ -47,10 +45,37 @@ const matchDispatchToProps = (dispatch) => {
         incrementCounter: incrementCounter,
         decrementCounter: decrementCounter,
         resetCounter: resetCounter,
-        incrementBy: incrementBy
+        incrementBy: incrementBy,
+        newCounter: newCounter
     }, dispatch);
 }
 export default connect(mapStateToProps, matchDispatchToProps)(Counter);
+
+
+
+// class Counter extends Component {
+//     render() {
+//         return (
+//           <div>
+//             <h1>{this.props.count}</h1>
+//             <button onClick={() => {
+//                 console.log('Counter up!');
+//               this.props.onUp(this.props.index);
+//             }}>Up</button>
+//
+//             <button onClick={() => {
+//               this.props.onDown(this.props.index);
+//             }}>Down</button>
+//           </div>
+//         );
+//     }
+// }
+
+// export default Counter;
+
+
+
+
 // export default connect( //basically allows you to call an action with this.props and have that be passed into the counterReducer to change state
 //     mapStateToProps,  //taking in state and matching it to props
 //     {

@@ -1,33 +1,17 @@
-import {INCREMENT, DECREMENT, RESET_COUNTER, INCREMENT_BY} from '../actions/index';
+import React, { Component } from 'react';
+import Counter from '../components/counter';
+
+import {INCREMENT, DECREMENT, RESET_COUNTER, INCREMENT_BY, NEW_COUNTER} from '../actions/index';
+
 
 
 const counterKeyReducer = (state = [], action) => {
   switch (action.type) {
+
+    case NEW_COUNTER:
+      return [...state, counterCreator()];
+
     case INCREMENT:
-        // var newState_Increment = state;
-        // var keyValue_Increment = action.payload + 1; //because first element is default
-        // // console.log('new state ' + newState_Increment.length);
-        //
-        // if (newState_Increment.length === 1){
-        //     newState_Increment.push({
-        //         keyValue: keyValue_Increment,
-        //         count: 1
-        //     });
-        //     console.log(newState_Increment);
-        //     console.log('length was 1, now is: ' + newState_Increment.length);
-        //     return newState_Increment;
-        //
-        // }else{
-        //     newState_Increment[keyValue_Increment].count += 1
-        //     console.log(newState_Increment);
-        //     console.log('length is bigger than 1, now is: ' + newState_Increment.length);
-        //
-        //     // return newState_Increment;
-        //     return newState_Increment.map((element, index) => {
-        //         return element
-        //     })
-        // }
-        // var keyValue = action.payload + 1; //because first element is default
         if (state.length === 1){
             state.push({
                 key: action.payload + 1,
@@ -54,15 +38,9 @@ const counterKeyReducer = (state = [], action) => {
                     return element
                 });
             }
-            // state[action.payload + 1].count += 1
-            // console.log(state);
-            // return state.map((element, index) => {
-            //     return element
-            // });
         }
 
     case DECREMENT:
-        // var keyValue = action.payload + 1;
         if (state.length === 1){
             state.push({
                 key: action.payload + 1,
@@ -74,11 +52,21 @@ const counterKeyReducer = (state = [], action) => {
             })
 
         }else{
-            state[action.payload + 1].count -= 1
-            console.log(state);
-            return state.map((element, index) => {
-                return element
-            })
+            if (state[action.payload + 1] === undefined){
+                state.push({
+                    key: action.payload + 1,
+                    count: -1
+                });
+                return state.map((element, index) => {
+                    return element
+                });
+            }else{
+                state[action.payload + 1].count -= 1
+                console.log(state);
+                return state.map((element, index) => {
+                    return element
+                });
+            }
         }
 
     case RESET_COUNTER:
@@ -94,44 +82,68 @@ const counterKeyReducer = (state = [], action) => {
             })
 
         }else{
-            state[action.payload + 1].count = 0
-            console.log(state);
-            return state.map((element, index) => {
-                return element
-            })
+            if (state[action.payload + 1] === undefined){
+                state.push({
+                    key: action.payload + 1,
+                    count: 0
+                });
+                return state.map((element, index) => {
+                    return element
+                });
+            }else{
+                state[action.payload + 1].count = 0
+                console.log(state);
+                return state.map((element, index) => {
+                    return element
+                });
+            }
         }
 
-    case INCREMENT_BY:
-        // var keyValue = action.payload.keyValue + 1;
-        if (state.length === 1){
-            state.push({
-                key: action.payload.keyValue + 1,
-                count: action.payload.amount
-            });
-            console.log(state);
-            return state.map((element, index) => {
-                return element
-            })
-
-        }else{
-            state[action.payload.keyValue + 1].count += action.payload.amount
-            console.log(state);
-            return state.map((element, index) => {
-                return element
-            })
-        }
+    // case INCREMENT_BY:
+    //     // var keyValue = action.payload.keyValue + 1;
+    //     if (state.length === 1){
+    //         state.push({
+    //             key: action.payload.keyValue + 1,
+    //             count: action.payload.amount
+    //         });
+    //         console.log(state);
+    //         return state.map((element, index) => {
+    //             return element
+    //         })
+    //
+    //     }else{
+    //         if (state[action.payload + 1] === undefined){
+    //             state.push({
+    //                 key: action.payload + 1,
+    //                 count: action.payload.amount
+    //             });
+    //             return state.map((element, index) => {
+    //                 return element
+    //             });
+    //         }else{
+    //             state[action.payload.keyValue + 1].count += action.payload.amount
+    //             console.log(state);
+    //             return state.map((element, index) => {
+    //                 return element
+    //             });
+    //         }
+    //     }
 
     default:
       return [
-          {
-              key: null,
-              count: 0
-          }
+          counterCreator()
       ];
   }
 }
 
 export default counterKeyReducer;
+
+function counterCreator() {
+    return {
+        key: null,
+        count: 0
+    }
+}
 
 
 // duplicate file and create a counterkeyValueReducer that takes in a state that is an

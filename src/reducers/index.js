@@ -4,8 +4,8 @@ import counterKeyReducer from './counter-key-reducer';
 
 
 export default combineReducers({
-    counter: counterReducer,
-    counterKey: counterKeyReducer
+    counterKey: counterKeyReducer,
+    counters: counterReducer
 });
 
 
