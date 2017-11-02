@@ -8,29 +8,40 @@ import logo from './logo.svg';
 import './App.css';
 
 import Counter from './components/counter';
-// import ListCounters from './components/list-counters';
+import Total from './components/total';
+
+import { incrementCounter, decrementCounter, resetCounter, incrementBy, newCounter } from './actions';
 
 //main store
 const store = createStore(reducers);
+
+//create new counter
+function dispatchCounter(){
+    store.dispatch(newCounter());
+}
 
 class App extends Component {
     constructor(props){
         super(props);
         this.state = {
             componentsArr: [
-                <Counter key={0} keyValue={0} incrementValue={1}/>,
+                <Counter key={0} keyValue={0}/>,
             ]
         }
+        dispatchCounter(); //run once
     }
 
     addCounters(){
-        var componentIndex = this.state.componentsArr.length - 1;
+        var componentIndex = this.state.componentsArr.length;
 
-        var newComponent = <Counter key={componentIndex + 1}
-                            keyValue={componentIndex + 1}
+        var newComponent = <Counter key={componentIndex}
+                            keyValue={componentIndex}
                              />
-        // var updatedComponentArr = this.state.componentsArr.push(newComponent);
         this.setState({componentsArr: this.state.componentsArr.concat([newComponent])})
+
+
+        dispatchCounter(); //add this component to state
+
         return this.state.componentsArr
     }
     render() {
@@ -38,6 +49,7 @@ class App extends Component {
         <Provider store={store}>
           <div className="App">
               <br/>
+              <Total />
               <button onClick={() => {
                 {this.addCounters()}
               }}>Add Counter</button>
@@ -48,8 +60,6 @@ class App extends Component {
     }
 }
 
-// <Counter key={0} keyValue={0} incrementValue={1}/>
-// <Counter key={1} keyValue={1} incrementValue={5}/>
 export default App;
 
 const styles = {

@@ -5,13 +5,12 @@ import { incrementCounter, decrementCounter, resetCounter, incrementBy, newCount
 
 class Counter extends Component {
     render() {
-        console.log(this.props.counterKey.length);
-        console.log('the key is: ' + this.props.keyValue);
-        var keyNumber = this.props.keyValue + 1 > this.props.counterKey.length - 1 ? 0 : this.props.keyValue + 1;
-        console.log('key number is: ' + keyNumber)
+        var componentIndex = this.props.keyValue + 1;
+        var componentCount = this.props.counterKey[componentIndex].count;
         return (
           <div>
-            {this.props.counterKey.length === 1 ? <h1>{this.props.counterKey[0].count}</h1> : <h1>{this.props.counterKey[keyNumber].count}</h1>}
+            <h1>{componentCount}</h1>
+
             <button onClick={() => {
               this.props.incrementCounter(this.props.keyValue);
             }}>Up</button>
@@ -23,22 +22,25 @@ class Counter extends Component {
             <button onClick={() => {
               this.props.resetCounter(this.props.keyValue);
             }}>Reset</button>
+
           </div>
         );
     }
 }
 
-// <button onClick={() => {
-//   this.props.incrementBy(this.props.incrementValue, this.props.keyValue);
-// }}>Skip 5</button>
-// export default Counter;
-
 const mapStateToProps = (state) => {
-  return {
-      counterKey: state.counterKey,
-   }
+    var sumArr = state.counterKey.map((object, index) => {
+        return object.count
+    });
+
+    var sumCount = sumArr.reduce((sum, value) => sum + value, 0);
+    console.log(' sum is: ' + sumCount);
+
+     return {
+         counterKey: state.counterKey,
+         sumCount: sumCount
+      }
 }
-// counter: state.counter,
 
 const matchDispatchToProps = (dispatch) => {
     return bindActionCreators({
@@ -50,37 +52,3 @@ const matchDispatchToProps = (dispatch) => {
     }, dispatch);
 }
 export default connect(mapStateToProps, matchDispatchToProps)(Counter);
-
-
-
-// class Counter extends Component {
-//     render() {
-//         return (
-//           <div>
-//             <h1>{this.props.count}</h1>
-//             <button onClick={() => {
-//                 console.log('Counter up!');
-//               this.props.onUp(this.props.index);
-//             }}>Up</button>
-//
-//             <button onClick={() => {
-//               this.props.onDown(this.props.index);
-//             }}>Down</button>
-//           </div>
-//         );
-//     }
-// }
-
-// export default Counter;
-
-
-
-
-// export default connect( //basically allows you to call an action with this.props and have that be passed into the counterReducer to change state
-//     mapStateToProps,  //taking in state and matching it to props
-//     {
-//         incrementCounter, //action creators
-//         decrementCounter, //action creators
-//         resetCounter,
-//         incrementBy
-//     })(Counter);

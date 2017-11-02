@@ -1,5 +1,3 @@
-
-
 export const INCREMENT = 'INCREMENT';
 export const DECREMENT = 'DECREMENT';
 export const RESET_COUNTER = 'RESET_COUNTER';
@@ -43,45 +41,8 @@ export const newCounter = () => {
     }
 }
 
-// export const newCounter = () => {
-//     return {
-//         type: NEW_COUNTER
-//     }
-// }
-//
-// export const incrementCounter = (index) => {
-//   return {
-//     type: INCREMENT,
-//     payload: index
-//   }
-// }
-//
-// export const decrementCounter = (index) => {
-//   return {
-//     type: DECREMENT,
-//     payload: index
-//   }
-// }
-//
-// export const resetCounter = (index) => {
-//     return {
-//         type: RESET_COUNTER,
-//         payload: index
-//     }
-// }
-//
-// export const incrementBy = ( n = 1, index ) => {
-//     return {
-//         type: INCREMENT_BY,
-//         payload: {
-//             amount: n,
-//             keyValue: index
-//         }
-//     }
-// }
-//
-// export const newCounter = () => {
-//     return {
-//         type: NEW_COUNTER
-//     }
-// }
+export const deleteCounter = () => {
+    return {
+        type: NEW_COUNTER
+    }
+}
