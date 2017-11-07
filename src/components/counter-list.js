@@ -7,6 +7,13 @@ import Counter from './counter.js';
 
 class CounterList extends Component {
 
+    //function to increment timer every second
+    incrementTimer(index){
+        var timer = setInterval(() => {
+            this.props.incrementCounter(index);
+        }, 100);
+    }
+
     makeList() {
         return this.props.counterKey.map((counter, index) => {
             return (
@@ -18,6 +25,9 @@ class CounterList extends Component {
                 }}
                 onDown ={() =>{
                     this.props.decrementCounter(index);
+                }}
+                onStart ={() =>{
+                    this.incrementTimer(index);
                 }}
                 onReset ={() =>{
                     this.props.resetCounter(index);

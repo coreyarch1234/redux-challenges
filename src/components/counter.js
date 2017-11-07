@@ -16,6 +16,10 @@ class Counter extends Component {
             }}>Down</button>
 
             <button onClick={() => {
+              this.props.onStart();
+            }}>Start</button>
+
+            <button onClick={() => {
               this.props.onReset();
             }}>Reset</button>
 

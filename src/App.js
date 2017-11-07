@@ -21,6 +21,7 @@ function dispatchCounter(){
     store.dispatch(newCounter());
 }
 
+
 class App extends Component {
     constructor(props){
         super(props);
