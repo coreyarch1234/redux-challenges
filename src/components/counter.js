@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+// import AnimatedBox from './animated-box'
+// <AnimatedBox />
 class Counter extends Component {
     render() {
         return (
@@ -19,6 +21,7 @@ class Counter extends Component {
               this.props.onDelete();
             }}>Delete</button>
 
+
           </div>
         );
     }
@@ -26,7 +29,7 @@ class Counter extends Component {
 
 const styles = {
     button: {
-        backgroundColor: 'blue',
+        backgroundColor: '#00223e',
         borderRadius: 8,
         color: 'white',
         border: 'none',

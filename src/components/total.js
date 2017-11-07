@@ -5,33 +5,55 @@ import { connect } from 'react-redux';
 import anime from 'animejs';
 
 class Total extends Component {
+    constructor(props) {
+       super(props);
+       this.baseCount = this.props.sumCount;
+     }
 
      moveLeft(){
          return anime({
            targets: this.divElement,
-           translateX: -250,
-           duration: 3000
+           translateX: 500,
+           direction: 'alternate',
+           loop: true,
+           borderRadius: 40,
+           easing: 'easeInOutQuad',
+           duration: function(el, i, l) {
+            return 1000 + (i * 1000);
+          }
          });
      }
      moveRight(){
          return anime({
            targets: this.divElement,
-           translateX: 250,
-           duration: 3000
+           translateY: 500,
+           direction: 'alternate',
+           loop: true,
+           borderRadius: 40,
+           easing: 'easeInOutQuad',
+           duration: function(el, i, l) {
+            return 1000 + (i * 1000);
+          }
          });
      }
      divChange() {
         if (this.divElement !== undefined) {
+            // if (this.props.sumCount > 10 * this.baseCount){
+            //     console.log('it happened');
+            //     this.divParent.append(`<div style={styles.boxer} ref={(div) => { this.divElement${this.baseCount} = div; }}>
+            //     </div>`)
+            // }
             this.moveLeft()
-            this.divElement.style.backgroundColor = 'red';
         }
     }
 
     render() {
         return (
-          <div>
+          <div ref={(div) => { this.divParent = div; }}>
 
-            <div id='boxer' style={styles.boxer} ref={(div) => { this.divElement = div; }}>
+            <input style={styles.textInput} value={this.props.sumCount} />
+
+            <div style={styles.boxer} ref={(div) => { this.divElement = div; }}>
             </div>
 
             {this.divChange()}
@@ -64,6 +86,16 @@ const styles = {
         marginTop: 25,
         padding: 25,
         marginBottom: 50
+    },
+    textInput: {
+        paddingTop: 10,
+        paddingBottom: 10,
+        fontSize: 25,
+        fontWeight: '300',
+        color: 'purple',
+        textAlign: 'center',
+        backgroundColor: '#transparent',
+        borderColor: '#43cea2'
     }
 }
 

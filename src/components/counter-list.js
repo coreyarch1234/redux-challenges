@@ -54,8 +54,8 @@ class CounterList extends Component {
 
 const styles = {
     button: {
-        backgroundColor: 'blue',
-        borderRadius: 8,
+        backgroundColor: '#00223e',
+        borderRadius: 5,
         color: 'white',
         border: 'none',
         padding: 15,
