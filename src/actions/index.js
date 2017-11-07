@@ -3,6 +3,7 @@ export const DECREMENT = 'DECREMENT';
 export const RESET_COUNTER = 'RESET_COUNTER';
 export const INCREMENT_BY = 'INCREMENT_BY';
 export const NEW_COUNTER = 'NEW_COUNTER';
+export const DELETE_COUNTER = 'DELETE_COUNTER';
 
 export const incrementCounter = (key) => {
   return {
@@ -41,8 +42,9 @@ export const newCounter = () => {
     }
 }
 
-export const deleteCounter = () => {
+export const deleteCounter = (key) => {
     return {
-        type: NEW_COUNTER
+        type: DELETE_COUNTER,
+        payload: key
     }
 }

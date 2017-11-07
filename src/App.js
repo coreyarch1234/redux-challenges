@@ -9,6 +9,8 @@ import './App.css';
 
 import Counter from './components/counter';
 import Total from './components/total';
+import CounterList from './components/counter-list';
+
 
 import { incrementCounter, decrementCounter, resetCounter, incrementBy, newCounter } from './actions';
 
@@ -23,12 +25,6 @@ function dispatchCounter(){
 class App extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            componentsArr: [
-                <Counter key={0} keyValue={0}/>,
-            ]
-        }
-        dispatchCounter(); //run once
     }
 
     addCounters(){
@@ -50,10 +46,7 @@ class App extends Component {
           <div className="App">
               <br/>
               <Total />
-              <button onClick={() => {
-                {this.addCounters()}
-              }}>Add Counter</button>
-              {this.state.componentsArr}
+              <CounterList />
           </div>
         </Provider>
       );

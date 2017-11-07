@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { incrementCounter, decrementCounter, resetCounter, incrementBy, newCounter } from '../actions';
+import { incrementCounter, decrementCounter, resetCounter, incrementBy, deleteCounter } from '../actions';
 
 class Counter extends Component {
     render() {
@@ -23,22 +23,18 @@ class Counter extends Component {
               this.props.resetCounter(this.props.keyValue);
             }}>Reset</button>
 
+            <button onClick={() => {
+              this.props.deleteCounter(this.props.keyValue);
+            }}>Delete</button>
+
           </div>
         );
     }
 }
 
 const mapStateToProps = (state) => {
-    var sumArr = state.counterKey.map((object, index) => {
-        return object.count
-    });
-
-    var sumCount = sumArr.reduce((sum, value) => sum + value, 0);
-    console.log(' sum is: ' + sumCount);
-
      return {
-         counterKey: state.counterKey,
-         sumCount: sumCount
+         counterKey: state.counterKey
       }
 }
 
@@ -48,7 +44,7 @@ const matchDispatchToProps = (dispatch) => {
         decrementCounter: decrementCounter,
         resetCounter: resetCounter,
         incrementBy: incrementBy,
-        newCounter: newCounter
+        deleteCounter: deleteCounter
     }, dispatch);
 }
 export default connect(mapStateToProps, matchDispatchToProps)(Counter);
