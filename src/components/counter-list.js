@@ -43,14 +43,28 @@ class CounterList extends Component {
     render() {
         return (
           <div>
-              <button onClick={(e) => {
+              <button style={styles.button} onClick={(e) => {
                   this.props.newCounter();
-              }}>Add Counter</button>
+              }}>Add</button>
               {this.makeList()}
           </div>
         );
     }
 }
+
+const styles = {
+    button: {
+        backgroundColor: 'blue',
+        borderRadius: 8,
+        color: 'white',
+        border: 'none',
+        padding: 15,
+        top: 10,
+        fontSize: 15
+
+    }
+}
+
 
 const mapStateToProps = (state) => {
     console.log('after deletion: ');

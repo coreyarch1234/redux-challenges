@@ -5,45 +5,37 @@ import { connect } from 'react-redux';
 import anime from 'animejs';
 
 class Total extends Component {
+
+     moveLeft(){
+         return anime({
+           targets: this.divElement,
+           translateX: -250,
+           duration: 3000
+         });
+     }
+     moveRight(){
+         return anime({
+           targets: this.divElement,
+           translateX: 250,
+           duration: 3000
+         });
+     }
      divChange() {
-        // Explicitly focus the text input using the raw DOM API
-        console.log('DIV CHANGED!!');
         if (this.divElement !== undefined) {
-            console.log('div is not undefined');
-            console.log(this.divElement);
+            this.moveLeft()
             this.divElement.style.backgroundColor = 'red';
         }
     }
+
     render() {
-        // function getDiv(){
-        //     console.log('the div is printed');
-        //     console.log(this.Div);
-        // }
-        function focusTextInput() {
-            // Explicitly focus the text input using the raw DOM API
-            console.log('FOCUSED!!');
-            // this.textInput.focus();
-        }
-
-        // function divChange() {
-        //     // Explicitly focus the text input using the raw DOM API
-        //     console.log('DIV CHANGED!!');
-        //     if (this.divElement !== undefined) {
-        //         console.log('div is not undefined');
-        //     }
-        // }
-
         return (
           <div>
-            <h1>The total is: {this.props.sumCount}</h1>
 
             <div id='boxer' style={styles.boxer} ref={(div) => { this.divElement = div; }}>
             </div>
-            <input
-             type="button"
-             value="Focus the text input"
-             onClick={this.divChange()}
-           />
+
+            {this.divChange()}
+
           </div>
         );
     }
@@ -69,7 +61,9 @@ const styles = {
         height: 10,
         backgroundColor: 'blue',
         margin: 'auto',
-        padding: 25
+        marginTop: 25,
+        padding: 25,
+        marginBottom: 50
     }
 }
 
@@ -83,6 +77,7 @@ const styles = {
 // console.log('printing boxer');
 // console.log(el);
 
+// <h1>The total is: {this.props.sumCount}</h1>
 
 
 
