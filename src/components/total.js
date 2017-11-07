@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 class Total extends Component {
     render() {
-        // console.log('The sum is: ' + this.props.sumCount);
         return (
           <div>
             <h1>The total is: {this.props.sumCount}</h1>
@@ -18,9 +17,8 @@ const mapStateToProps = (state) => {
     var sumArr = state.counterKey.map((object, index) => {
         return object.count
     });
-//
+
     var sumCount = sumArr.reduce((sum, value) => sum + value, 0);
-    // console.log(' sum is: ' + sumCount);
 
      return {
          counterKey: state.counterKey,

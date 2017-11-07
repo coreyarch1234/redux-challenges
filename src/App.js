@@ -7,7 +7,6 @@ import reducers from './reducers';
 import logo from './logo.svg';
 import './App.css';
 
-import Counter from './components/counter';
 import Total from './components/total';
 import CounterList from './components/counter-list';
 
@@ -25,20 +24,6 @@ function dispatchCounter(){
 class App extends Component {
     constructor(props){
         super(props);
-    }
-
-    addCounters(){
-        var componentIndex = this.state.componentsArr.length;
-
-        var newComponent = <Counter key={componentIndex}
-                            keyValue={componentIndex}
-                             />
-        this.setState({componentsArr: this.state.componentsArr.concat([newComponent])})
-
-
-        dispatchCounter(); //add this component to state
-
-        return this.state.componentsArr
     }
     render() {
         return (

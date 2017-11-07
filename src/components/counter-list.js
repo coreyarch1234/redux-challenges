@@ -3,14 +3,14 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { incrementCounter, decrementCounter, resetCounter, incrementBy, deleteCounter, newCounter } from '../actions';
 
-import CounterTwo from './counter-two.js';
+import Counter from './counter.js';
 
 class CounterList extends Component {
 
     makeList() {
         return this.props.counterKey.map((counter, index) => {
             return (
-                <CounterTwo
+                <Counter
                 key={index}
                 count = {counter.count}
                 onUp ={() =>{
