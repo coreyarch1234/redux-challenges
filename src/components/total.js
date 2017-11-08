@@ -93,10 +93,10 @@ const styles = {
         paddingBottom: 10,
         fontSize: 25,
         fontWeight: '300',
-        color: 'purple',
+        color: '#00223e',
         textAlign: 'center',
-        backgroundColor: '#transparent',
-        borderColor: '#43cea2'
+        backgroundColor: '#FFA17F',
+        borderColor: '#00223e'
     }
 }
 

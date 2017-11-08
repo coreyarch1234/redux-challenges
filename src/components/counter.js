@@ -4,17 +4,39 @@ import React, { Component } from 'react';
 // <AnimatedBox />
 class Counter extends Component {
     constructor(props) {
-        super(props)
+        super(props);
 
-        this.timerId = null
+        this.state = {
+            isRunning: true
+        }
+
+        this.timerId = null;
     }
 
     componentWillMount() {
-        this.startTimer(this.props.index)
+        this.startTimer(this.props.index);
     }
 
     componentWillUnmount() {
         clearInterval(this.timerId)
+    }
+
+    pauseOrPlay(){
+        if (this.state.isRunning == true){
+            return (
+                <button style = {styles.button} onClick={() => {
+                  clearInterval(this.timerId);
+                  this.setState({isRunning: false});
+              }}>PAUSE</button>
+            )
+        }else{
+            return (
+                <button style = {styles.button} onClick={() => {
+                    this.startTimer(this.props.index);
+                    this.setState({isRunning: true});
+              }}>PLAY</button>
+            )
+        }
     }
 
 
@@ -27,18 +49,19 @@ class Counter extends Component {
 
     render() {
         return (
-          <div>
+          <div style={{padding: 10}}>
 
-            <h1>{this.props.name}</h1>
             <h1>{this.props.count}</h1>
+
+            {this.pauseOrPlay()}
 
             <button style = {styles.button} onClick={() => {
               this.props.onReset();
-            }}>Reset</button>
+            }}>RESET</button>
 
             <button style = {styles.button} onClick={() => {
               this.props.onDelete();
-            }}>Delete</button>
+            }}>DELETE</button>
 
 
           </div>
@@ -56,9 +79,10 @@ const styles = {
         borderRadius: 8,
         color: 'white',
         border: 'none',
-        padding: 15,
+        padding: 10,
         marginRight: 10,
-        fontSize: 18
+        fontSize: 12,
+        top: 15
     }
 }
 

@@ -7,47 +7,34 @@ import Counter from './counter.js';
 
 class CounterList extends Component {
 
-
-
-    textHide(){
-        console.log('The name is: ');
-        if (this.textInput !== undefined){
-            console.log(this.textInput.value);
-            this.textInput.style.display = 'none';
-        }
-
-    }
-
     makeList() {
         return this.props.counterKey.map((counter, index) => {
             return (
                 <div key={index}>
                     <input
                       type="text"
-                      placeholder="Name"
+                      placeholder= {this.textInput === undefined || this.textInput.value.length == 0 ? 'Change My Name' : this.textInput.value}
                       style={styles.textInput}
                       ref={(input) => { this.textInput = input; }} />
 
-
-                      <button style = {styles.saveButton} onClick={() => {
-                        this.textHide();
-                      }}>Save</button>
+                      <input
+                        type="button"
+                        value="Done"
+                        style={styles.saveButton}
+                        onClick={this.done}
+                      />
 
 
                     <Counter
                         key={index}
                         index={index}
                         count = {counter.count}
-                        name={this.textInput === undefined ? 'undefined' : this.textInput.value}
                         increment = {(index) => {this.props.incrementCounter(index)}}
                         onUp ={() =>{
                             this.props.incrementCounter(index);
                         }}
                         onDown ={() =>{
                             this.props.decrementCounter(index);
-                        }}
-                        onStart ={() =>{
-                            this.incrementTimer(index);
                         }}
                         onReset ={() =>{
                             this.props.resetCounter(index);
@@ -67,7 +54,7 @@ class CounterList extends Component {
           <div>
               <button style={styles.button} onClick={(e) => {
                   this.props.newCounter();
-              }}>Add</button>
+              }}>ADD</button>
               {this.makeList()}
           </div>
         );
@@ -81,7 +68,6 @@ const styles = {
         color: 'white',
         border: 'none',
         padding: 15,
-        top: 10,
         fontSize: 15,
         marginBottom: 100
 
@@ -89,23 +75,26 @@ const styles = {
     saveButton: {
         backgroundColor: '#00223e',
         borderRadius: 5,
-        color: 'white',
+        color: '#FFA17F',
         border: 'none',
-        padding: 15,
-        top: 10,
-        fontSize: 25
+        padding: 12,
+        top: 5,
+        fontSize: 12
 
     },
     textInput: {
-        paddingTop: 5,
+        paddingTop: 20,
         paddingBottom: 5,
         marginRight: 5,
-        fontSize: 25,
+        fontSize: 22,
         fontWeight: '600',
         color: 'purple',
         textAlign: 'center',
-        backgroundColor: '#transparent',
-        borderColor: '#43cea2',
+        backgroundColor: '#FFA17F',
+        border: 'none',
+        outlineStyle: 'none',
+        boxShadow: 'none',
+        textShadowColor: 'rgba(0, 0, 0, 0)',
     }
 }
 
