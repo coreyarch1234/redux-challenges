@@ -4,6 +4,18 @@ export const RESET_COUNTER = 'RESET_COUNTER';
 export const INCREMENT_BY = 'INCREMENT_BY';
 export const NEW_COUNTER = 'NEW_COUNTER';
 export const DELETE_COUNTER = 'DELETE_COUNTER';
+export const ADD_NAME = 'ADD_NAME';
+
+
+export const addName = (key, name) => {
+  return {
+    type: INCREMENT,
+    payload: {
+        key: key,
+        name: name
+    }
+  }
+}
 
 export const incrementCounter = (key) => {
   return {

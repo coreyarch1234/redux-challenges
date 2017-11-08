@@ -48,6 +48,7 @@ class Total extends Component {
     }
 
     render() {
+            // {this.divChange()}
         return (
           <div ref={(div) => { this.divParent = div; }}>
 
@@ -56,7 +57,7 @@ class Total extends Component {
             <div style={styles.boxer} ref={(div) => { this.divElement = div; }}>
             </div>
 
-            {this.divChange()}
+
 
           </div>
         );
