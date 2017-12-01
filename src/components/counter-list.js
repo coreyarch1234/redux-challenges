@@ -42,6 +42,9 @@ class CounterList extends Component {
                         onDelete ={() =>{
                             this.props.deleteCounter(index);
                         }}
+                        onIncrementBy ={() =>{
+                            this.props.incrementBy(7, index);
+                        }}
                     />
 
                 </div>
@@ -83,7 +86,7 @@ const styles = {
 
     },
     textInput: {
-        paddingTop: 20,
+        paddingTop: 80,
         paddingBottom: 5,
         marginRight: 5,
         fontSize: 22,

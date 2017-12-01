@@ -59,10 +59,20 @@ const counterKeyReducer = (state = [], action) => {
               return element
           });
 
-      default:
-        return state;
+    case INCREMENT_BY:
+        return state.map((element, index) => {
+            if (action.payload.keyValue === element.key) {
+                element.count += action.payload.amount;
+            }
+            return element
+        });
+
+    default:
+      return state;
+
 
     }
+
 }
 
 export default counterKeyReducer;

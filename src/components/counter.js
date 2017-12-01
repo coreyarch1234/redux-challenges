@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 // import AnimatedBox from './animated-box'
 // <AnimatedBox />
+
+
 class Counter extends Component {
     constructor(props) {
         super(props);
@@ -51,6 +53,7 @@ class Counter extends Component {
         return (
           <div style={{padding: 10}}>
 
+
             <h1>{this.props.count}</h1>
 
             {this.pauseOrPlay()}
@@ -58,6 +61,10 @@ class Counter extends Component {
             <button style = {styles.button} onClick={() => {
               this.props.onReset();
             }}>RESET</button>
+
+            <button style = {styles.button} onClick={() => {
+              this.props.onIncrementBy();
+           }}>Add 7</button>
 
             <button style = {styles.button} onClick={() => {
               this.props.onDelete();
@@ -83,7 +90,8 @@ const styles = {
         marginRight: 10,
         fontSize: 12,
         top: 15
-    }
+    },
+    
 }
 
 
